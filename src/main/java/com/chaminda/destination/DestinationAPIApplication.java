@@ -6,6 +6,8 @@ import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.federecio.dropwizard.swagger.SwaggerBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.skife.jdbi.v2.DBI;
 
 public class DestinationAPIApplication extends Application<DestinationAPIConfiguration> {
@@ -21,7 +23,14 @@ public class DestinationAPIApplication extends Application<DestinationAPIConfigu
 
     @Override
     public void initialize(final Bootstrap<DestinationAPIConfiguration> bootstrap) {
-        // TODO: application initialization
+        bootstrap.addBundle(new SwaggerBundle<DestinationAPIConfiguration>() {
+
+            @Override
+            protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(DestinationAPIConfiguration destinationAPIConfiguration) {
+                return destinationAPIConfiguration.swaggerBundleConfiguration;
+            }
+
+        });
     }
 
     @Override

@@ -5,6 +5,8 @@ server:
   adminConnectors:
     - type: http
       port: 8097
+swagger:
+  resourcePackage: com.chaminda.destination.resources
 
 database:
   driverClass: org.h2.Driver
